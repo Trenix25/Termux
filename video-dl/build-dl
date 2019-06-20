@@ -254,6 +254,8 @@ if [ -f $ARCHIVE ]; then
 #
      echo "rm -rf youtube-dl"
      rm -rf youtube-dl
+     echo "rm -f ../bin/youtube-dl"
+     rm -f ../bin/youtube-dl
 else
 #
 #    The archive file was not found in the expected location.
@@ -283,6 +285,17 @@ fi
 #
 echo "cd youtube-dl"
 cd youtube-dl
+#
+# Remove the prepackaged finished product that we cannot use.
+#
+if [ -f youtube-dl ]; then
+     echo "rm -f youtube-dl"
+     rm -f youtube-dl
+fi
+if [ -f bin/youtube-dl ]; then
+     echo "rm -f bin/youtube-dl"
+     rm -f bin/youtube-dl
+fi
 #
 # Save the original Makefile.
 #
