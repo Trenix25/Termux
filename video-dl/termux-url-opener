@@ -1,0 +1,78 @@
+#!/data/data/com.termux/files/usr/bin/bash
+#
+# Where do you want your downloaded content to go?
+#
+# The youtube-dl application software will save
+# your downloads to your home directory in Termux.
+#
+# This should be /data/data/com.termux/files/home/
+#
+# If you want them to go somewhere else, like in
+# your device's internal storage, then you will
+# need to have the files moved.  The path name
+# used for USEDIR must not contain any space
+# characters, but the names of the files to be
+# moved may contain space characters because
+# they are not used inside the if statement.
+# Do not use a trailing forward slash on the
+# end of the directory name used by USEDIR
+# since this will be added later on in this
+# script.
+#
+# Your files must be kept inside the directory
+# space used by Termux, or in internal storage.
+# You cannot use Termux, and therefore this
+# script, to move your files to a removable
+# MicroSD card because Termux does not currently
+# have the necessary system permission to write
+# to a removable MicroSD card.
+#
+USEDIR=/storage/emulated/0/YouTube
+#
+# Print an opening message.
+#
+clear
+echo -n "termux-url-opener: Called with: "
+echo $*
+#
+# Make sure the target directory exists.
+#
+if [ ! -d $USEDIR ]; then
+#
+# If the target directory does not exist then
+# print an error message and exit.
+#
+     echo -n "Directory not found: "
+     echo $USEDIR/
+     exit 1
+fi
+#
+# Run the youtube-dl application software.
+#
+if [[ $1 =~ ^.*youtu.*$ ]] || [[ $1 =~ ^.*youtube.*$ ]]; then
+     echo ${1} > ~/.config/youtube-dl/config
+     youtube-dl $1
+     if [ $? == 0 ]; then
+#
+# Move the downloaded content to the directory specified in USEDIR.
+#
+          mv -v ~/*.mp4 $USEDIR/
+          CODE=$?
+          if [ $CODE != 0 ]; then
+               echo "Unable to move the downloaded content."
+               exit 1
+          fi
+     else
+#
+# Print an error message if something went wrong.
+#
+          echo "Well, that didn't go so well."
+          exit 1
+     fi
+elif [[ $1 =~ ^.*nourlselected.*$ ]]; then
+     echo “ERROR1”
+else
+     echo Unhandled URL type: $1
+fi
+#
+# EOF
