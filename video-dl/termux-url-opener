@@ -47,25 +47,27 @@ if [ ! -d $USEDIR ]; then
      exit 1
 fi
 #
+# Move to the target directory.
+#
+cd $USEDIR/
+#
 # Run the youtube-dl application software.
+#
+# Doing it this way seems to help in some cases.
 #
 if [[ $1 =~ ^.*youtu.*$ ]] || [[ $1 =~ ^.*youtube.*$ ]]; then
      echo ${1} > ~/.config/youtube-dl/config
-     youtube-dl $1
-     if [ $? == 0 ]; then
+     youtube-dl --socket-timeout 3 $1
+     if [ $? != 0 ]; then
+	  echo "Trying again..."
+          youtube-dl --socket-timeout 3 $1
+	  if [ $? != 0 ]; then
+               echo "Last try..."
+	       youtube-dl --socket-timeout 3 $1
+	  fi
+     fi
 #
-# Move the downloaded content to the directory specified in USEDIR.
-#
-          mv -v ~/*.mp4 $USEDIR/
-          CODE=$?
-          if [ $CODE != 0 ]; then
-               echo "Unable to move the downloaded content."
-               exit 1
-          fi
-     else
-#
-# Print an error message if something went wrong.
-#
+     if [ $? != 0 ]; then
           echo "Well, that didn't go so well."
           exit 1
      fi
