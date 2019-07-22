@@ -1,0 +1,36 @@
+#!/data/data/com.termux/files/usr/bin/bash
+#
+# Set the directory to use.
+#
+# The path name must not contain any space characters.
+#
+USEDIR="/data/data/com.termux/files/home/tmp"
+#
+# Make sure the directory exists.
+#
+if [ ! -d $USEDIR ]; then
+     echo -n "Invalid directory value for USEDIR: "
+     echo $USEDIR
+     exit 1
+fi
+#
+# Start the postgre server, unless the user does not want it started.
+#
+# The presence of a file named .block_postgres
+# will prevent the server from starting.
+#
+if [ ! -f $USEDIR/.block_postgres ]; then
+     postgres > $USEDIR/.postgres.log 2>&1 &
+#
+# Store the pid value.
+#
+     echo $! > $USEDIR/.postgres.pid
+else
+     if [ -f $USEDIR/.postgres.pid ]; then
+          rm -f $USEDIR/.postgres.pid
+     fi
+fi
+#
+exit 0
+#
+# EOF
