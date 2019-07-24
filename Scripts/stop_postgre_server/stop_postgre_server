@@ -17,9 +17,8 @@ fi
 # Stop the postgre server if we have a pid file to use.
 #
 if [ -f $USEDIR/.postgres.pid ]; then
-     PID=`cat $USEDIR/.postgres.pid`
+     pg_ctl stop >> $USEDIR/.postgres.log 2>&1
      rm -f $USEDIR/.postgres.pid
-     kill $PID
 fi
 #
 exit 0
