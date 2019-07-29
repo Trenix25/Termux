@@ -22,12 +22,18 @@ fi
 if [ ! -f $USEDIR/.block_postgres ]; then
      pg_ctl start > $USEDIR/.postgres.log 2>&1
 #
-# Store the pid value.
+# Make a note that the postgre server is running.
 #
-     echo $! > $USEDIR/.postgres.pid
+     if [ $? == 0 ]; then
+          touch $USEDIR/.postgres_running
+     else
+          if [ -f $USEDIR/.postgres_running ]; then
+               rm -f $USEDIR/.postgres_running
+          fi
+     fi
 else
-     if [ -f $USEDIR/.postgres.pid ]; then
-          rm -f $USEDIR/.postgres.pid
+     if [ -f $USEDIR/.postgres_running ]; then
+          rm -f $USEDIR/.postgres_running
      fi
 fi
 #

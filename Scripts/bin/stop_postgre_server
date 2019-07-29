@@ -14,11 +14,11 @@ if [ ! -d $USEDIR ]; then
      exit 1
 fi
 #
-# Stop the postgre server if we have a pid file to use.
+# Stop the postgre server if it is running.
 #
-if [ -f $USEDIR/.postgres.pid ]; then
+if [ -f $USEDIR/.postgres_running ]; then
      pg_ctl stop >> $USEDIR/.postgres.log 2>&1
-     rm -f $USEDIR/.postgres.pid
+     rm -f $USEDIR/.postgres_running
 fi
 #
 exit 0
