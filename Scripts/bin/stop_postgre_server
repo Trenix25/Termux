@@ -14,11 +14,18 @@ if [ ! -d $USEDIR ]; then
      exit 1
 fi
 #
+# Make sure the PGDATA directory exists.
+#
+if [ ! -d $PGDATA ]; then
+     echo -n "Invalid directory value for PGDATA: "
+     echo $PGDATA
+     exit 1
+fi
+#
 # Stop the postgre server if it is running.
 #
-if [ -f $USEDIR/.postgres_running ]; then
+if [ -f $PGDATA/postmaster.pid ]; then
      pg_ctl stop >> $USEDIR/.postgres.log 2>&1
-     rm -f $USEDIR/.postgres_running
 fi
 #
 exit 0

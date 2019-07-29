@@ -14,24 +14,22 @@ if [ ! -d $USEDIR ]; then
      exit 1
 fi
 #
+# Make sure the PGDATA directory exists.
+#
+if [ ! -d $PGDATA ]; then
+     echo -n "Invalid directory value for PGDATA: "
+     echo $PGDATA
+     exit 1
+fi
+#
 # Start the postgre server, unless the user does not want it started.
 #
 # The presence of a file named .block_postgres
 # will prevent the server from starting.
 #
 if [ ! -f $USEDIR/.block_postgres ]; then
-     if [ ! -f $USEDIR/.postgres_running ]; then
+     if [ ! -f $PGDATA/postmaster.pid ]; then
           pg_ctl start > $USEDIR/.postgres.log 2>&1
-#
-# Make a note that the postgre server is running.
-#
-          if [ $? == 0 ]; then
-               touch $USEDIR/.postgres_running
-          fi
-     fi
-else
-     if [ -f $USEDIR/.postgres_running ]; then
-          rm -f $USEDIR/.postgres_running
      fi
 fi
 #
