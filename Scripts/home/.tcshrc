@@ -1,0 +1,24 @@
+#
+alias dsearch "python3 /data/data/com.termux/files/home/Deep-Explorer/deepexplorer.py $*"
+alias gh "cd /data/data/com.termux/files/home/GitHub"
+alias load "cat /proc/loadavg"
+alias mkclone "source /data/data/com.termux/files/bin/mkclone"
+alias precmd 'set prompt="`echo $cwd` >> " ; rehash'
+alias proc "ps | grep u0_a667"
+alias racer "ls -al /storage/emulated/0/Android/data/com.racergame.cityracing3d/files"
+alias run "/data/data/com.n0n3m4.droidc/files/temp $*"
+alias url "termux-url-opener $1"
+alias yt "cd /storage/emulated/0/YouTube"
+#
+set history=500
+set path="(./ /data/data/com.termux/files/bin /data/data/com.termux/files/home/C /data/data/com.termux/files/usr/bin /data/data/com.termux/files/usr/bin/applets /data/data/com.termux/files/usr/libexec /data/data/com.termux/files/usr/opt/metasploit-framework /sbin /vendor/bin /system/sbin /system/bin /system/xbin)"
+set savehist=500
+#
+setenv bin "/data/data/com.termux/files/bin"
+setenv binary "/data/data/com.n0n3m4.droidc/files/temp"
+setenv C "/storage/emulated/0/C"
+setenv HOME "/data/data/com.termux/files/home"
+setenv PATH "./:/data/data/com.termux/files/bin:/data/data/com.termux/files/home/C:/data/data/com.termux/files/usr/bin:/data/data/com.termux/files/usr/bin/applets:/data/data/com.termux/files/usr/libexec:/data/data/com.termux/files/usr/opt/metasploit-framework:/sbin:/vendor/bin:/system/sbin:/system/bin:/system/xbin"
+setenv PGDATA "/data/data/com.termux/files/home/.msf4/db"
+#
+# EOF
