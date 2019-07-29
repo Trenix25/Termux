@@ -24,10 +24,11 @@ PATH=./:/data/data/com.termux/files/bin:/data/data/com.termux/files/home/C:/data
 #
 export PGDATA="/data/data/com.termux/files/home/.msf4/db"
 #
-/data/data/com.termux/files/bin/start_postgre_server
-#
-if [ -f /storage/emulated/0/.use_tcsh ]; then
-     exec /data/data/com.termux/files/usr/bin/tcsh -l
+if [ $SHLVL == 1 ]; then
+     /data/data/com.termux/files/bin/start_postgre_server
+     if [ -f /storage/emulated/0/.use_tcsh ]; then
+          exec /data/data/com.termux/files/usr/bin/tcsh -l
+     fi
 fi
 #
 # EOF

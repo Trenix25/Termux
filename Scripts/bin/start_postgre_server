@@ -20,15 +20,13 @@ fi
 # will prevent the server from starting.
 #
 if [ ! -f $USEDIR/.block_postgres ]; then
-     pg_ctl start > $USEDIR/.postgres.log 2>&1
+     if [ ! -f $USEDIR/.postgres_running ]; then
+          pg_ctl start > $USEDIR/.postgres.log 2>&1
 #
 # Make a note that the postgre server is running.
 #
-     if [ $? == 0 ]; then
-          touch $USEDIR/.postgres_running
-     else
-          if [ -f $USEDIR/.postgres_running ]; then
-               rm -f $USEDIR/.postgres_running
+          if [ $? == 0 ]; then
+               touch $USEDIR/.postgres_running
           fi
      fi
 else

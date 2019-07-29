@@ -1,4 +1,3 @@
-#
 alias dsearch "python3 /data/data/com.termux/files/home/Deep-Explorer/deepexplorer.py $*"
 alias gh "cd /data/data/com.termux/files/home/GitHub"
 alias load "cat /proc/loadavg"
