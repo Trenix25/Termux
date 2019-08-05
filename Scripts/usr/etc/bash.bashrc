@@ -11,7 +11,6 @@ alias mkclone='source /data/data/com.termux/files/bin/mkclone'
 alias proc='ps | grep u0_a667'
 alias racer='ls -al /storage/emulated/0/Android/data/com.racergame.cityracing3d/files'
 alias run='/data/data/com.n0n3m4.droidc/files/temp $*'
-alias url='termux-url-opener $1'
 alias yt='cd /storage/emulated/0/YouTube'
 #
 bin=/data/data/com.termux/files/bin

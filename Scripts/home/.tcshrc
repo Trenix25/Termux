@@ -6,7 +6,6 @@ alias precmd 'set prompt="`echo $cwd` >> " ; rehash'
 alias proc "ps | grep u0_a667"
 alias racer "ls -al /storage/emulated/0/Android/data/com.racergame.cityracing3d/files"
 alias run "/data/data/com.n0n3m4.droidc/files/temp"
-alias url "termux-url-opener"
 alias yt "cd /storage/emulated/0/YouTube"
 #
 set history=500
