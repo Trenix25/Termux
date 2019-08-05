@@ -15,7 +15,9 @@ set savehist=500
 setenv bin "/data/data/com.termux/files/bin"
 setenv binary "/data/data/com.n0n3m4.droidc/files/temp"
 setenv C "/storage/emulated/0/C"
+setenv COLUMNS "108"
 setenv HOME "/data/data/com.termux/files/home"
+setenv LINES "65"
 setenv PATH "./:/data/data/com.termux/files/bin:/data/data/com.termux/files/home/C:/data/data/com.termux/files/usr/bin:/data/data/com.termux/files/usr/bin/applets:/data/data/com.termux/files/usr/libexec:/data/data/com.termux/files/usr/opt/metasploit-framework:/sbin:/vendor/bin:/system/sbin:/system/bin:/system/xbin"
 setenv PGDATA "/data/data/com.termux/files/home/.msf4/db"
 #

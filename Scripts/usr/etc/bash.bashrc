@@ -20,6 +20,8 @@ dev_home=/storage/emulated/0
 HOME=/data/data/com.termux/files/home
 PATH=./:/data/data/com.termux/files/bin:/data/data/com.termux/files/home/C:/data/data/com.termux/files/usr/bin:/data/data/com.termux/files/usr/bin/applets:/data/data/com.termux/files/usr/libexec:/data/data/com.termux/files/usr/opt/metasploit-framework:/sbin:/vendor/bin:/system/sbin:/system/bin:/system/xbin
 #
+export COLUMNS="108"
+export LINES="65"
 export PGDATA="/data/data/com.termux/files/home/.msf4/db"
 #
 if [ $SHLVL == 1 ]; then
