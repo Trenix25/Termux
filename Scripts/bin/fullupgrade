@@ -1,11 +1,14 @@
 #!/data/data/com.termux/files/usr/bin/bash
 #
-# Update and upgrade script for Termux
+# Update and full upgrade script for Termux
 #
 cd /data/data/com.termux/files/home
 apt-get update
-apt-get upgrade
+apt full-upgrade
 pip install --upgrade pip
+cd /data/data/com.termux/files/usr/bin
+ln -sf python3 python2
+cd /data/data/com.termux/files/home
 pip2 install --upgrade pip
 #
 # EOF
