@@ -1,20 +1,43 @@
+alias backup "cd /data/data/com.termux/files/backup"
+alias bin "cd /data/data/com.termux/files/bin"
+alias cfb "cd /data/data/com.termux/files/home/GitHub/CProgrammingFBGroup.github.io"
+alias cpn "cd /data/data/com.termux/files/home/GitHub/CProgrammingNotes"
+alias cr "cd /data/data/com.termux/files/home/GitHub/C"
 alias dsearch "python3 /data/data/com.termux/files/home/Deep-Explorer/deepexplorer.py"
+alias etc "cd /data/data/com.termux/files/usr/etc"
 alias gh "cd /data/data/com.termux/files/home/GitHub"
+alias home "cd /data/data/com.termux/files/home"
+alias html "cd /data/data/com.termux/files/home/GitHub/HTML"
 alias load "cat /proc/loadavg"
 alias mkclone "source /data/data/com.termux/files/bin/mkclone"
 alias precmd 'set prompt="`echo $cwd` >> " ; rehash'
 alias proc "ps | grep u0_a667"
 alias racer "ls -al /storage/emulated/0/Android/data/com.racergame.cityracing3d/files"
 alias run "/data/data/com.n0n3m4.droidc/files/temp"
+alias tm "cd /data/data/com.termux/files/home/GitHub/Termux"
+alias usr "cd /data/data/com.termux/files/usr"
+alias usrbin "cd /data/data/com.termux/files/usr/bin"
 alias yt "cd /storage/emulated/0/YouTube"
 #
+set backup=/data/data/com.termux/files/backup
+set bin=/data/data/com.termux/files/bin
+set binary=/data/data/com.n0n3m4.droidc/temp
+set C=/storage/emulated/0/C
+set cfb=/data/data/com.termux/files/home/GitHub/CProgrammingFBGroup.github.io
+set cpn=/data/data/com.termux/files/home/GitHub/CProgrammingNotes
+set cr=/data/data/com.termux/files/home/GitHub/C
+set etc=/data/data/com.termux/files/usr/etc
+set gh=/data/data/com.termux/files/home/GitHub
+set home=/data/data/com.termux/files/home
+set html=/data/data/com.termux/files/home/GitHub/HTML
 set history=500
 set path="(./ /data/data/com.termux/files/bin /data/data/com.termux/files/home/C /data/data/com.termux/files/usr/bin /data/data/com.termux/files/usr/bin/applets /data/data/com.termux/files/usr/libexec /data/data/com.termux/files/usr/opt/metasploit-framework /sbin /vendor/bin /system/sbin /system/bin /system/xbin)"
 set savehist=500
+set tm=/data/data/com.termux/files/home/GitHub/Termux
+set usr=/data/data/com.termux/files/usr
+set usrbin=/data/data/com.termux/files/usr/bin
+set yt=/storage/emulated/0/YouTube
 #
-setenv bin "/data/data/com.termux/files/bin"
-setenv binary "/data/data/com.n0n3m4.droidc/files/temp"
-setenv C "/storage/emulated/0/C"
 setenv COLUMNS "108"
 setenv HOME "/data/data/com.termux/files/home"
 setenv LINES "65"
