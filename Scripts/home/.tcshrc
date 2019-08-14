@@ -5,6 +5,7 @@ alias cpn "cd /data/data/com.termux/files/home/GitHub/CProgrammingNotes"
 alias cr "cd /data/data/com.termux/files/home/GitHub/C"
 alias dsearch "python3 /data/data/com.termux/files/home/Deep-Explorer/deepexplorer.py"
 alias etc "cd /data/data/com.termux/files/usr/etc"
+alias fb "cd /data/data/com.termux/files/home/GitHub/Facebook"
 alias gh "cd /data/data/com.termux/files/home/GitHub"
 alias home "cd /data/data/com.termux/files/home"
 alias html "cd /data/data/com.termux/files/home/GitHub/HTML"
@@ -27,6 +28,7 @@ set cfb=/data/data/com.termux/files/home/GitHub/CProgrammingFBGroup.github.io
 set cpn=/data/data/com.termux/files/home/GitHub/CProgrammingNotes
 set cr=/data/data/com.termux/files/home/GitHub/C
 set etc=/data/data/com.termux/files/usr/etc
+set fb=/data/data/com.termux/files/home/GitHub/Facebook
 set gh=/data/data/com.termux/files/home/GitHub
 set home=/data/data/com.termux/files/home
 set html=/data/data/com.termux/files/home/GitHub/HTML
