@@ -9,6 +9,5 @@ pip install --upgrade pip
 cd /data/data/com.termux/files/usr/bin
 ln -sf python3 python2
 cd /data/data/com.termux/files/home
-pip2 install --upgrade pip
 #
 # EOF

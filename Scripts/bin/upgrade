@@ -6,6 +6,5 @@ cd /data/data/com.termux/files/home
 apt-get update
 apt-get upgrade
 pip install --upgrade pip
-pip2 install --upgrade pip
 #
 # EOF
