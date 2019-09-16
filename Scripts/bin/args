@@ -1,0 +1,41 @@
+#!/data/data/com.termux/files/usr/bin/bash
+#
+echo
+echo "Called with:"
+echo
+#
+echo -n "arg1: "
+echo $1
+#
+echo -n "arg2: "
+echo $2
+#
+echo -n "arg3: "
+echo $3
+#
+echo -n "arg4: "
+echo $4
+#
+echo -n "arg5: "
+echo $5
+#
+echo -n "arg6: "
+echo $6
+#
+echo -n "arg7: "
+echo $7
+#
+echo -n "arg8: "
+echo $8
+#
+echo -n "arg9: "
+echo $9
+#
+echo -n " all: "
+echo $*
+#
+echo
+#
+exit 0
+#
+# EOF
