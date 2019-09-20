@@ -1,0 +1,66 @@
+#!/data/data/com.termux/files/usr/bin/bash
+#
+if [ -f ~/pkglist.txt ]; then
+     echo "The temp file ~/pkglist.txt used by mklist is already present.  Remove this file first."
+     exit 1
+fi
+#
+pkg list-installed 2> /dev/null | cut -f 1 -d / -s > ~/pkglist.txt
+#
+if [ $? != 0 ]; then
+     CODE=$?
+     echo "Failed to create a list of installed packages."
+     if [ -f ~/pkglist.txt ]; then
+          rm -f ~/pkglist.txt
+     fi
+     exit $CODE
+fi
+#
+PKGS=`cat ~/pkglist.txt`
+#
+if [ $? != 0 ]; then
+     CODE=$?
+     echo "Failed to read from the temp file ~/pkglist.txt."
+     if [ -f ~/pkglist.txt ]; then
+          rm -f ~/pkglist.txt
+     fi
+     exit $CODE
+fi
+#
+if [ -f ~/pkglist.txt ]; then
+     rm -f ~/pkglist.txt
+     if [ $? != 0 ]; then
+          CODE=$?
+	  echo "Failed to remove the temp file ~/pkglist.txt."
+	  exit $CODE
+     fi
+fi
+#
+echo "#!/data/data/com.termux/files/usr/bin/bash"
+echo "#"
+echo "# Termux package recovery script"
+echo "#"
+#
+for PKGNAME in $PKGS ; do
+     echo -n "pkg install "
+     echo $PKGNAME
+     echo "#"
+     echo "if [ \$? != 0 ]; then"
+     echo "     CODE=\$?"
+     echo "     echo"
+     echo -n '     echo "Something went wrong while installing the '
+     echo -n $PKGNAME
+     echo ' package."'
+     echo "     exit \$CODE"
+     echo "#"
+done
+#
+echo 'echo "All of the packages have been successfully installed."'
+echo "#"
+echo "exit 0"
+echo "#"
+echo "# EOF"
+#
+exit 0
+#
+# EOF

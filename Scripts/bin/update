@@ -1,0 +1,5 @@
+#!/data/data/com.termux/files/usr/bin/bash
+#
+gcc -lm -ldl -llog -lz -o $1 -pedantic -pthread -std=c17 -Wall -Wfatal-errors $1.c
+#
+# EOF

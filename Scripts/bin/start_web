@@ -1,0 +1,27 @@
+#!/data/data/com.termux/files/usr/bin/bash
+#
+# Start the Apache2 web server.
+#
+if [ -f /data/data/com.termux/files/adm/httpd.pid ]; then
+     exit 0
+fi
+#
+apachectl start
+#
+if [ $? != 0 ]; then
+     exit $?
+fi
+#
+# The Apache2 web server has some bugs so this is what it takes.
+#
+sleep 2
+#
+ps -e | grep httpd | cut -b 1-5 -z | cut -b 1-5 > /data/data/com.termux/files/adm/httpd.pid
+#
+if [ $? != 0 ]; then
+     exit $?
+fi
+#
+exit 0
+#
+# EOF

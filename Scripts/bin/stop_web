@@ -1,0 +1,23 @@
+#!/data/data/com.termux/files/usr/bin/bash
+#
+# Stop the Apache2 web server.
+#
+# If it isn't done this way it shows an error message.
+#
+if [ -f /data/data/com.termux/files/adm/httpd.pid ]; then
+     WEBPID=`cat /data/data/com.termux/files/adm/httpd.pid` > /dev/null 2>&1
+     kill $WEBPID
+     if [ -f /data/data/com.termux/files/adm/httpd.pid ]; then
+          rm -f /data/data/com.termux/files/adm/httpd.pid
+     fi
+fi
+#
+#     apachectl stop
+#
+#     if [ $? != 0 ]; then
+#          exit $?
+#     fi
+#
+exit 0
+#
+# EOF

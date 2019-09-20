@@ -1,0 +1,11 @@
+#!/data/data/com.termux/files/usr/bin/bash
+#
+pkg list-installed 2> /dev/null | cut -f 1 -d / -s
+#
+if [ $? != 0 ]; then
+     exit $?
+fi
+#
+exit 0
+#
+# EOF

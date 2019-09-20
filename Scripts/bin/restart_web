@@ -1,0 +1,14 @@
+#!/data/data/com.termux/files/usr/bin/bash
+#
+# Restart the Apache2 web server.
+#
+if [ -f /data/data/com.termux/files/adm/httpd.pid ]; then
+     apachectl restart
+     if [ $? != 0 ]; then
+          exit $?
+     fi
+fi
+#
+exit 0
+#
+# EOF

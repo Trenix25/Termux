@@ -1,0 +1,406 @@
+#!/data/data/com.termux/files/usr/bin/bash
+#
+# Builds and installs the youtube-dl program in Termux.
+#
+# First, go to https://yt-dl.org/ and download the youtube-dl
+# archive file.  It will list three link options.  Choose the
+# option that ends with .tar.gz so this script can unpack the
+# archive file and build the youtube-dl application.  This
+# program is updated by the developer from time to time so
+# you will need to get the latest version.  If your copy of
+# youtube-dl stops working then you will need to download
+# the latest version from the developer and use this script
+# to update your copy in Termux.
+#
+# Next, you will need the modified Makefile which can be
+# found at https://github.com/Trenix25/Termux/video-dl/
+# which is where you should have obtained this file.  You
+# will also need the files termux-url-opener and adapt.c
+# from the same directory.  Put the termux-url-opener file
+# in a directory that is in your command path in Termux.
+# /data/data/com.termux/usr/bin/ would be a good choice.
+# You will need to give yourself permission to run the
+# termux-url-opener script after copying it to the new
+# directory.  Make sure you are in the directory that you
+# have moved the script into and use the command:
+#
+# chmod 0700 termux-url-opener
+#
+# or you could get a Permission denied error message when
+# you try to run the script.
+#
+# It might be helpful if you also created a symbolic link
+# directory in Termux.  Use:
+#
+# cd /data/data/com.termux/files
+# ln -sf usr/bin bin
+#
+# This way if you use the adapt program to modify any shell
+# scripts intended for use on a Unix or Linux system and
+# the script is looking for /bin/bash it will end up using
+# /data/data/com.termux/usr/bin/bash instead.
+#
+# You will also need to store the modified Makefile in
+# directory space accessible to Termux.  I store my copy
+# in /data/data/com.termux/files/backup/youtube-dl/
+# If you choose to store your copy in a different location
+# then make sure to update the MAKEFILEDIR variable in this
+# script so it knows where to find the modified Makefile.
+# The Makefile had to be modified because Termux does not
+# appear to have a program called pandoc which is something
+# the original Makefile requires when processing the
+# documentation associated with the youtube-dl application.
+#
+# You will also need to install the clang package in Termux,
+# if you have not already done so.
+#
+# Use: apt install clang
+#
+# from the command prompt in Termux if you need to install
+# the clang package.  I would highly recommend installing
+# the man pages as well, if you have not already done so.
+#
+# Use: apt install man
+#
+# from the command prompt in Termux to install the man pages.
+#
+# After installing the clang package you will need to compile
+# the adapt.c file.  Make sure the adapt.c file is in your
+# current directory and use the command:
+#
+# gcc -pedantic -std=c17 -Wall -o adapt adapt.c
+#
+# issued from the command prompt to do this.  Then move the
+# file adapt to /data/data/com.termux/files/usr/bin/ or to
+# another directory in your command path so your command
+# shell in Termux can find it.  After moving the adapt file
+# make sure you give yourself permission to run it the same
+# way you did with the termux-url-opener script.  Use:
+#
+# chmod 0700 adapt
+#
+# from the command prompt when the adapt file is in your
+# current directory.
+#
+# Most web browsers will put the files that you download in
+#
+# /storage/emulated/0/Download/
+#
+# which will be listed as /Download in internal storage by
+# a file manager app.  This script expects to find the archive
+# file in that directory so if your web browser puts
+# downloaded files somewhere else then you have two options.
+# You can move the file to that directory with a file manager
+# app, or you can change the variable USEDIR to tell this
+# script where to find the archive file that you downloaded
+# with your web browser.  Do not add a trailing forward slash
+# to the directory name since that will be added when setting
+# the ARCHIVE variable.  Do not change the setting for the
+# ARCHIVE variable.  The pathname used by USEDIR must not
+# contain any spaces.  Using any space characters, even if
+# escaped or quoted, will cause problems for the if statement
+# used later on in this script.  The ArmorFly browser insists
+# on using a directory name that includes
+# "AFVault (Do not delete!)" which is not compatible with
+# this script.  If you wish to use a browser that does this
+# then you will need to move the downloaded archive file to
+# another directory with a compatible path name before using
+# this script.
+#
+# The archive file will be named something like
+# youtube-dl-yyyy.mm.dd.tar.gz where the release date is
+# encoded into the file name with a four digit year, a two
+# digit month, and a two digit day.
+#
+USEDIR=/storage/emulated/0/Download
+ARCHIVE=$USEDIR/youtube-dl-*
+#
+# Set the variable MAKEFILEDIR to point to the directory
+# that holds your modified Makefile file.  Do not include
+# the trailing forward slash to the directory name since
+# that will be added when setting the MAKEFILENAME variable.
+#
+# The same rule about not using any space characters in
+# the path name applies here too.  You must not use any
+# directory names that use any space characters or this
+# script will not work.  The file name for the modified
+# Makefile file must not contain any space characters
+# either.
+#
+MAKEFILEDIR=/data/data/com.termux/files/backup/youtube-dl
+MAKEFILENAME=$MAKEFILEDIR/Makefile
+#
+# You have some options when using the termux-url-opener
+# script.  You can select the link text and "Share" it to
+# Termux, or just use the Share or Share link option in
+# your browser to share the link to Termux, or you can
+# select the link text and copy it to your clipboard and
+# paste it on to the command line as a command line
+# argument to the termux-url-opener script.  You can also
+# choose to "Share" the link to the clipboard and paste it
+# to the command line as a command line argument for the
+# termux-url-opener script.  Some browsers might add some
+# text of their own when sharing a link to the content
+# which the termux-url-opener script will not be able to
+# handle.  If you are experiencing a problem with the
+# termux-url-opener script not being able to process the
+# shared link information then you will need to share
+# the link to your clipboard first and paste it to a text
+# file using some kind of text file editor, and then
+# edit out anything in the link text that was added by
+# your browser.  A link should start with https:// and
+# not have any space characters in it.  Start where it
+# says https:// and stop at the first space character.
+# That part that you have just selected is the link text.
+# The rest was added by your browser and should not be
+# shared to Termux or used as any part of the command
+# line argument passed to the termux-url-opener script.
+#
+# The youtube-dl application software may take about
+# fifteen seconds to get started after the link text
+# has been passed to the termux-url-opener script so
+# be patient.
+#
+# If you get some kind of error message like 404: Not
+# found then the link text did not point to any
+# known content.  If in doubt, paste the link text
+# into your browser's URL box and see what happens.
+# If your browser cannot find the content either then
+# either the link text has been corrupted, or the
+# content it used to point to may have deleted or
+# made unavailable. If you get an error message like
+# 403: Forbidden then you will need to update your
+# copy of the youtube-dl application software.
+#
+# This script and any other files packaged or included with
+# it are provided ''AS IS'' and do not include any warranty
+# of any kind whatsoever.  If any user uses or attempts to
+# use this script or any of the files packaged or included
+# with it they do so entirely at their own risk.
+#
+# Make sure you get legal permission from the owner of the
+# content you want to download from YouTube or any other
+# source before using or attempting to use any software
+# files processed by this script or any other files
+# packaged or included with it so you don't infringe
+# their copyright.  The user of this software is
+# responsible for their own compliance, or lack thereof,
+# with any laws or regulations in their own jurisdictions
+# as well as the jurisdictions in which the provider of
+# the content the user downloads or attempts to download
+# resides in.  The user is also responsible for their
+# own compliance, or lack thereof, with any rules or
+# legal obligations imposed by the provider of the
+# content the user downloads or attempts to download
+# using any software files modified by this script
+# and/or any files packaged or included with it.  Such
+# content providers likely have their own Terms of Service
+# and/or Conditions of Use Agreements and it is the
+# user's responsibility to read, ensure their own correct
+# and thorough understanding of, and full compliance with
+# any such Agreements.
+#
+# The author of this script assumes no risk, liability,
+# or responibility for the user's use, misuse, or abuse
+# of this script or any other programs or files packaged,
+# included, or used with it.  The user of this script
+# and/or any of the files packaged, included, and/or
+# used with this script assumes all risk, responsibility,
+# and liability arrising out of their use, misuse, or
+# abuse of this script and/or any files packaged or
+# included with it.  It is the user's responsibility
+# to obtain any necessary legal permission from the
+# owner of the content that the user downloads or
+# attempts to download as a result of the use of
+# this script and/or any other files packaged
+# or included with it, including their use of the
+# youtube-dl application software.  The user's effort,
+# or lack thereof, to obtain any necessary legal
+# permission from the owner of the content the user
+# downloads or attempts to download with any software
+# files processed with this script and/or any files
+# packaged with or included with this script is beyond
+# the author's control.
+#
+# The statements and/or content contained in this script
+# and any other files packaged or included with this
+# script do not necessarily reflect the views and
+# opinions of the developer(s) of the youtube-dl
+# application software, or any platforms, computer
+# systems, or networks used to host such software or
+# their respective owners.  Neither the developer(s)
+# of the youtube-dl application software, nor the
+# youtube-dl application software itself is in any
+# way affiliated with this script, nor any of the
+# files packaged or included with it, nor the author
+# of this script.
+#
+# The rest of this script does not define any other
+# variables that should be set by the user.  Do not
+# make any modifications to this script beyond this
+# point, unless you really know what you are doing.
+#
+# Move to the correct spot.  This is set in the
+# Makefile so don't change this.
+#
+echo "cd /data/data/com.termux/files/usr/etc"
+cd /data/data/com.termux/files/usr/etc
+#
+# Make sure we have a package to install.
+#
+if [ -f $ARCHIVE ]; then
+#
+#    Remove the old version.
+#
+     echo "rm -rf youtube-dl"
+     rm -rf youtube-dl
+     echo "rm -f ../bin/youtube-dl"
+     rm -f ../bin/youtube-dl
+else
+#
+#    The archive file was not found in the expected location.
+#
+     echo -n "Package file not found: "
+     echo $ARCHIVE
+     exit 1
+fi
+#
+# Unpack the archive file.
+#
+echo -n "tar xzf "
+echo $ARCHIVE
+tar xzf $ARCHIVE
+#
+# Make sure that ran without any trouble.
+#
+CODE=$?
+if [ $CODE != 0 ]; then
+     echo "There was a problem unpacking the archive file."
+     echo -n "tar exit "
+     echo $CODE
+     exit 1
+fi
+#
+# Move into the new directory.
+#
+echo "cd youtube-dl"
+cd youtube-dl
+#
+# Remove the prepackaged finished product that we cannot use.
+#
+if [ -f youtube-dl ]; then
+     echo "rm -f youtube-dl"
+     rm -f youtube-dl
+fi
+if [ -f bin/youtube-dl ]; then
+     echo "rm -f bin/youtube-dl"
+     rm -f bin/youtube-dl
+fi
+#
+# Save the original Makefile.
+#
+echo "mv Makefile Makefile.original"
+mv Makefile Makefile.original
+#
+# Make sure the modified Makefile is where we think it is.
+#
+if [ -f $MAKEFILENAME ]; then
+#
+# Copy the modified Makefile into the current directory.
+#
+     echo -n "cp "
+     echo -n $MAKEFILENAME
+     echo " ./Makefile"
+     cp $MAKEFILENAME ./Makefile
+else
+     echo -n "Modified Makefile file not found: "
+     echo $MAKEFILENAME
+     exit 1
+fi
+#
+# Move into usr/etc/youtube-dl/devscripts/
+#
+echo "cd devscripts"
+cd devscripts
+#
+# Adapt the python source code files for use with Termux.
+#
+echo "adapt *.py"
+adapt *.py
+#
+# Make sure that ran without any trouble.
+#
+CODE=$?
+if [ $CODE != 0 ]; then
+     echo "There was a problem adapting the python source code files in usr/etc/youtube-dl/devscripts/"
+     echo -n "adapt exit "
+     echo $CODE
+     exit 1
+fi
+#
+# Move into usr/etc/youtube-dl/youtube_dl/
+#
+echo "cd ../youtube_dl"
+cd ../youtube_dl
+#
+# Adapt the python source code files in this directory too.
+#
+echo "adapt *.py"
+adapt *.py
+#
+# Make sure that worked ok.
+#
+CODE=$?
+if [ $CODE != 0 ]; then
+     echo "There was a problem adapting the python source code files in usr/etc/youtube-dl/youtube_dl/"
+     echo -n "adapt exitv"
+     echo $CODE
+     exit 1
+fi
+#
+# Move back up to usr/etc/youtube-dl/
+#
+echo "cd .."
+cd ..
+#
+# Run make
+#
+echo
+echo "make all"
+echo
+make all
+CODE=$?
+echo
+#
+# Make sure everything went ok.
+#
+if [ $CODE != 0 ]; then
+     echo "There was a problem building the youtube-dl application."
+     echo -n "make exit "
+     echo $CODE
+     exit 1
+fi
+#
+# Install the new application file.
+#
+echo "make install"
+echo
+make install
+CODE=$?
+echo
+#
+# See if that had any problems.
+#
+if [ $CODE != 0 ]; then
+     echo "There was a problem installing the youtube-dl application."
+     echo -n "make install exit "
+     echo $CODE
+     exit 1
+fi
+#
+# If we get this far then everything should have worked just fine.
+#
+echo "The youtube-dl application has been successfully built and installed."
+exit 0
+#
+# EOF

@@ -1,0 +1,5 @@
+#!/data/data/com.termux/files/usr/bin/bash
+#
+gcc -gcodeview -o $1.s -pedantic -S -std=c17 -Wall -Wfatal-errors $1.c
+#
+# EOF

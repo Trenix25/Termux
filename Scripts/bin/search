@@ -1,0 +1,9 @@
+#!/data/data/com.termux/files/usr/bin/bash
+#
+echo -n 'Searching for "'
+echo -n $1
+echo '":'
+echo
+find -type f -exec grep $1 '{}' \; -exec echo '{}' \;
+#
+# EOF

@@ -1,0 +1,73 @@
+#!/data/data/com.termux/files/usr/bin/bash
+#
+# Look for an existing zip archive file and remove it.
+#
+if [ -f $1/$1.zip ]; then
+     rm -f $1/$1.zip
+     if [ $? != 0 ]; then
+          CODE=$?
+          echo -n "Failed to remove the existing zip archive file: "
+          echo -n $1
+          echo -n "/"
+          echo -n $1
+          echo ".zip."
+          exit $CODE
+     fi
+     echo -n "The old zip archive file "
+     echo -n $1
+     echo -n "/"
+     echo -n $1
+     echo ".zip has been removed."
+fi
+#
+# Create a new zip archive file.
+#
+zip -r9 $1.zip $1
+if [ $? != 0 ]; then
+     CODE=$?
+     echo "Failed to successfully create the new zip archive file."
+     if [ -f $1.zip ]; then
+          rm -f $1.zip
+          if [ $? != 0 ]; then
+               echo "Failed to remove the new malformed zip archive file."
+          fi
+     fi
+     exit $CODE
+fi
+#
+# Test the integrity of the new zip archive file.
+#
+zip -T $1.zip > /dev/null 2>&1
+if [ $? != 0 ]; then
+     CODE=$?
+     echo -n "The new zip archive file "
+     echo -n $1
+     echo ".zip has failed its integrity check."
+     rm -f $1.zip
+     if [ $? != 0 ]; then
+          echo "Failed to remove the new malformed zip archive file."
+     fi
+     exit $CODE
+fi
+#
+# Move the new zip archive file into the correct directory.
+#
+mv $1.zip $1/$1.zip
+if [ $? != 0 ]; then
+     CODE=$?
+     echo "Failed to move the new zip archive file to the correct directory."
+#
+# Leave the new zip file where it is.
+#
+     exit $CODE
+fi
+#
+echo -n "The new zip archive file "
+echo -n $1
+echo -n ".zip has been successfully created and moved into the "
+echo -n $1
+echo "/ directory."
+#
+exit 0
+#
+# EOF

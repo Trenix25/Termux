@@ -1,6 +1,8 @@
+alias adm "cd /data/data/com.termux/files/adm"
 alias backup "cd /data/data/com.termux/files/backup"
 alias bin "cd /data/data/com.termux/files/bin"
 alias cfb "cd /data/data/com.termux/files/home/GitHub/CProgrammingFBGroup.github.io"
+alias cpm "rm -f /data/data/com.termux/files/home/.msf4/db/postmaster.pid"
 alias cpn "cd /data/data/com.termux/files/home/GitHub/CProgrammingNotes"
 alias cr "cd /data/data/com.termux/files/home/GitHub/C"
 alias dsearch "python3 /data/data/com.termux/files/home/Deep-Explorer/deepexplorer.py"
@@ -18,8 +20,11 @@ alias run "/data/data/com.n0n3m4.droidc/files/temp"
 alias tm "cd /data/data/com.termux/files/home/GitHub/Termux"
 alias usr "cd /data/data/com.termux/files/usr"
 alias usrbin "cd /data/data/com.termux/files/usr/bin"
+alias ws "cd /data/data/com.termux/files/web_server"
 alias yt "cd /storage/emulated/0/YouTube"
 #
+set adm=/data/data/com.termux/files/adm
+set apache2=/data/data/com.termux/files/usr/etc/apache2
 set backup=/data/data/com.termux/files/backup
 set bin=/data/data/com.termux/files/bin
 set binary=/data/data/com.n0n3m4.droidc/temp
@@ -33,17 +38,18 @@ set gh=/data/data/com.termux/files/home/GitHub
 set home=/data/data/com.termux/files/home
 set html=/data/data/com.termux/files/home/GitHub/HTML
 set history=500
-set path="(./ /data/data/com.termux/files/bin /data/data/com.termux/files/home/C /data/data/com.termux/files/usr/bin /data/data/com.termux/files/usr/bin/applets /data/data/com.termux/files/usr/libexec /data/data/com.termux/files/usr/opt/metasploit-framework /sbin /vendor/bin /system/sbin /system/bin /system/xbin)"
+set path="(./ /data/data/com.termux/files/bin /data/data/com.termux/files/home/.shortcuts /data/data/com.termux/files/home/.shortcuts/tasks /data/data/com.termux/files/home/.termux/tasker /data/data/com.termux/files/home/C /data/data/com.termux/files/usr/bin /data/data/com.termux/files/usr/bin/applets /data/data/com.termux/files/usr/libexec /data/data/com.termux/files/usr/opt/metasploit-framework /sbin /vendor/bin /system/sbin /system/bin /system/xbin)"
 set savehist=500
 set tm=/data/data/com.termux/files/home/GitHub/Termux
 set usr=/data/data/com.termux/files/usr
 set usrbin=/data/data/com.termux/files/usr/bin
+set ws=/data/data/com.termux/files/web_server
 set yt=/storage/emulated/0/YouTube
 #
 setenv COLUMNS "108"
 setenv HOME "/data/data/com.termux/files/home"
 setenv LINES "65"
-setenv PATH "./:/data/data/com.termux/files/bin:/data/data/com.termux/files/home/C:/data/data/com.termux/files/usr/bin:/data/data/com.termux/files/usr/bin/applets:/data/data/com.termux/files/usr/libexec:/data/data/com.termux/files/usr/opt/metasploit-framework:/sbin:/vendor/bin:/system/sbin:/system/bin:/system/xbin"
+setenv PATH "./:/data/data/com.termux/files/bin:/data/data/com.termux/files/home/.shortcuts:/data/data/com.termux/files/home/.shortcuts/tasks:/data/data/com.termux/files/home/.termux/tasker:/data/data/com.termux/files/home/C:/data/data/com.termux/files/usr/bin:/data/data/com.termux/files/usr/bin/applets:/data/data/com.termux/files/usr/libexec:/data/data/com.termux/files/usr/opt/metasploit-framework:/sbin:/vendor/bin:/system/sbin:/system/bin:/system/xbin"
 setenv PGDATA "/data/data/com.termux/files/home/.msf4/db"
 #
 # EOF

@@ -1,0 +1,187 @@
+#!/data/data/com.termux/files/usr/bin/bash
+#
+# This script creates the symbolic links to help automate the Termux recovery process.
+#
+if [ ! -d /data/data/com.termux/files/home ]; then
+     echo "Your home directory does not exist!"
+     exit 1
+fi
+#
+# usr/ and usr/bin/ must already exist, or this script will not work.
+#
+if [ ! -d /data/data/com.termux/files/usr ]; then
+     echo "The /data/data/com.termux/files/usr/ directory does not exist!"
+     exit 1
+fi
+#
+if [ ! -d /data/data/com.termux/files/usr/bin ]; then
+     echo "The /data/data/com.termux/files/usr/bin/ directory does not exist!"
+     exit 1
+fi
+#
+if [ ! -d /data/data/com.termux/files/bin ]; then
+     echo "The /data/data/com.termux/files/bin/ directory does not exist!"
+     exit 1
+fi
+#
+cd /data/data/com.termux/files/home
+#
+if [ ! -e GitHub ]; then
+     ln -sf ../../../../../storage/emulated/0/GitHub GitHub
+     if [ $? == 0 ]; then
+          echo "Successfully created the ~/GitHub symbolic link."
+     else
+          echo "Failed to create the ~/GitHub symbolic link."
+     fi
+else
+     if [ -L GitHub ]; then
+          echo "The symbolic link ~/GitHub already exists."
+     else
+          echo "~/GitHub already exists, but it is not a symbolic link."
+     fi
+fi
+#
+if [ ! -e YouTube ]; then
+     ln -sf ../../../../../storage/emulated/0/YouTube YouTube
+     if [ $? == 0 ]; then
+          echo "Successfully created the ~/YouTube symbolic link."
+     else
+          echo "Failed to create the ~/YouTube symbolic link."
+     fi
+else
+     if [ -L YouTube ]; then
+          echo "The symbolic link ~/YouTube already exists."
+     else
+          echo "~/YouTube already exists, but it is not a symbolic link."
+     fi
+fi
+#
+cd /data/data/com.termux/files/bin
+#
+if [ ! -e bash ]; then
+     ln -sf ../usr/bin/bash bash
+     if [ $? == 0 ]; then
+          echo "Successfully created the bin/bash symbolic link."
+     else
+          echo "Failed to create the bin/bash symbolic link."
+     fi
+else
+     if [ -L bash ]; then
+          echo "The symbolic link bin/bash already exists."
+     else
+          echo "bin/bash already exists, but it is not a symbolic link."
+     fi
+fi
+#
+if [ ! -e echo ]; then
+     ln -sf ../usr/bin/echo echo
+     if [ $? == 0 ]; then
+          echo "Successfully created the bin/echo symbolic link."
+     else
+          echo "Failed to create the bin/echo symbolic link."
+     fi
+else
+     if [ -L echo ]; then
+          echo "The symbolic link bin/echo already exists."
+     else
+          echo "bin/echo already exists, but it is not a symbolic link."
+     fi
+fi
+#
+if [ ! -e list ]; then
+     ln -sf ../usr/bin/less list
+     if [ $? == 0 ]; then
+          echo "Successfully created the bin/list symbolic link."
+     else
+          echo "Failed to create the bin/list symbolic link."
+     fi
+else
+     if [ -L echo ]; then
+          echo "The symbolic link bin/list already exists."
+     else
+          echo "bin/list already exists, but it is not a symbolic link."
+     fi
+fi
+#
+if [ ! -e sh ]; then
+     ln -sf ../usr/bin/sh sh
+     if [ $? == 0 ]; then
+          echo "Successfully created the bin/sh symbolic link."
+     else
+          echo "Failed to create the bin/sh symbolic link."
+     fi
+else
+     if [ -L sh ]; then
+          echo "The symbolic link bin/sh already exists."
+     else
+          echo "bin/sh already exists, but it is not a symbolic link."
+     fi
+fi
+#
+if [ ! -e tcsh ]; then
+     ln -sf ../usr/bin/tcsh tcsh
+     if [ $? == 0 ]; then
+          echo "Successfully created the bin/tcsh symbolic link."
+     else
+          echo "Failed to create the bin/tcsh symbolic link."
+     fi
+else
+     if [ -L tcsh ]; then
+          echo "The symbolic link bin/tcsh already exists."
+     else
+          echo "bin/tcsh already exists, but it is not a symbolic link."
+     fi
+fi
+#
+if [ ! -e termux-file-editor ]; then
+     ln -sf ../usr/bin/vi termux-file-editor
+     if [ $? == 0 ]; then
+          echo "Successfully created the bin/termux-file-editor symbolic link."
+     else
+          echo "Failed to create the bin/termux-file-editor symbolic link."
+     fi
+else
+     if [ -L termux-file-editor ]; then
+          echo "The symbolic link bin/termux-file-editor already exists."
+     else
+          echo "bin/termux-file-editor already exists, but it is not a symbolic link."
+     fi
+fi
+#
+if [ ! -e url ]; then
+     ln -sf termux-url-opener url
+     if [ $? == 0 ]; then
+          echo "Successfully created the bin/url symbolic link."
+     else
+          echo "Failed to create the bin/url symbolic link."
+     fi
+else
+     if [ -L url ]; then
+          echo "The symbolic link bin/url already exists."
+     else
+          echo "bin/url already exists, but it is not a symbolic link."
+     fi
+fi
+#
+cd /data/data/com.termux/files/usr/bin
+#
+if [ ! -e python2 ]; then
+     ln -sf python3 python2
+     if [ $? == 0 ]; then
+          echo "Successfully created the usr/bin/python2 symbolic link."
+     else
+          echo "Failed to create the usr/bin/python2 symbolic link."
+     fi
+else
+     if [ -L python2 ]; then
+          echo "The symbolic link bin/python2 already exists."
+     else
+          echo "bin/python2 already exists, but it is not a symbolic link."
+     fi
+fi
+#
+cd /data/data/com.termux/files/home
+#
+exit 0
+#
+# EOF

