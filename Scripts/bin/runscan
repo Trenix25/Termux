@@ -1,7 +1,0 @@
-#!/data/data/com.termux/files/usr/bin/bash
-#
-/data/data/com.termux/files/usr/bin/nmap -sT -p 0-65535 -d --open -r --version-all -vv $1
-#
-exit $?
-#
-# EOF
