@@ -24,6 +24,11 @@ if [ ! -d /data/data/com.termux/files/bin ]; then
      exit 1
 fi
 #
+if [ ! -d /data/data/com.termux/files/home/C ]; then
+     echo "The /data/data/com.termux/files/home/C/ directory does not exist!"
+     exit 1
+fi
+#
 cd /data/data/com.termux/files/home
 #
 if [ ! -e GitHub ]; then
@@ -53,6 +58,23 @@ else
           echo "The symbolic link ~/YouTube already exists."
      else
           echo "~/YouTube already exists, but it is not a symbolic link."
+     fi
+fi
+#
+cd /data/data/com.termux/files/home/C
+#
+if [ ! -e C ]; then
+     ln -sf ../../../../../../storage/emulated/0/C C
+     if [ $? == 0 ]; then
+          echo "Successfully created the ~/C/C symbolic link."
+     else
+          echo "Failed to create the ~/C/C symbolic link."
+     fi
+else
+     if [ -L C ]; then
+          echo "The symbolic link ~/C/C already exists."
+     else
+          echo "~/C/C already exists, but it is not a symbolic link."
      fi
 fi
 #
