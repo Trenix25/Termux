@@ -61,6 +61,9 @@ if [ $SHLVL == 1 ]; then
      if [ -f /storage/emulated/0/.use_tcsh ]; then
           exec /data/data/com.termux/files/usr/bin/tcsh -l
      fi
+else
+     HISTFILE=
+     HISTFILESIZE=
 fi
 #
 # EOF

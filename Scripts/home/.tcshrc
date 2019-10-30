@@ -39,7 +39,13 @@ set home=/data/data/com.termux/files/home
 set html=/data/data/com.termux/files/home/GitHub/HTML
 set history=500
 set path="(./ /data/data/com.termux/files/bin /data/data/com.termux/files/home/.shortcuts /data/data/com.termux/files/home/.shortcuts/tasks /data/data/com.termux/files/home/.termux/tasker /data/data/com.termux/files/home/C /data/data/com.termux/files/usr/bin /data/data/com.termux/files/usr/bin/applets /data/data/com.termux/files/usr/libexec /data/data/com.termux/files/usr/opt/metasploit-framework /sbin /vendor/bin /system/sbin /system/bin /system/xbin)"
-set savehist=500
+#
+if ( $shlvl == 1 ) then
+     set savehist=500
+else
+     unset savehist
+endif
+#
 set tm=/data/data/com.termux/files/home/GitHub/Termux
 set usr=/data/data/com.termux/files/usr
 set usrbin=/data/data/com.termux/files/usr/bin
