@@ -1,7 +1,9 @@
 alias adm "cd /data/data/com.termux/files/adm"
+alias api "ls /data/data/com.termux/files/usr/bin/termux-*"
 alias backup "cd /data/data/com.termux/files/backup"
 alias bin "cd /data/data/com.termux/files/bin"
 alias cfb "cd /data/data/com.termux/files/home/GitHub/CProgrammingFBGroup.github.io"
+alias cgi "cd /data/data/com.termux/files/cgi-bin"
 alias cpm "rm -f /data/data/com.termux/files/home/.msf4/db/postmaster.pid"
 alias cpn "cd /data/data/com.termux/files/home/GitHub/CProgrammingNotes"
 alias cr "cd /data/data/com.termux/files/home/GitHub/C"
@@ -30,6 +32,7 @@ set bin=/data/data/com.termux/files/bin
 set binary=/data/data/com.n0n3m4.droidc/temp
 set C=/storage/emulated/0/C
 set cfb=/data/data/com.termux/files/home/GitHub/CProgrammingFBGroup.github.io
+set cgi=/data/data/com.termux/files/cgi-bin
 set cpn=/data/data/com.termux/files/home/GitHub/CProgrammingNotes
 set cr=/data/data/com.termux/files/home/GitHub/C
 set etc=/data/data/com.termux/files/usr/etc

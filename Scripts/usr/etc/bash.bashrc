@@ -4,9 +4,11 @@ command_not_found_handle() {
 #
 PS1='\$ '
 alias adm='cd /data/data/com.termux/files/adm'
+alias api='ls /data/data/com.termux/files/usr/bin/termux-*'
 alias backup='cd /data/data/com.termux/files/backup'
 alias bin='cd /data/data/com.termux/files/bin'
 alias cfb='cd /data/data/com.termux/files/home/GitHub/CProgrammingFBGroup.github.io'
+alias cgi='cd /data/data/com.termux/files/cgi-bin'
 alias cpm='rm -f /data/data/com.termux/files/home/.msf4/db/postmaster.pid'
 alias cpn='cd /data/data/com.termux/files/home/GitHub/CProgrammingNotes'
 alias cr='cd /data/data/com.termux/files/home/GitHub/C'
@@ -34,6 +36,7 @@ bin=/data/data/com.termux/files/bin
 binary=/data/data/com.n0n3m4.droidc/files/temp
 C=/storage/emulated/0/C
 cfb=/data/data/com.termux/files/home/GitHub/CProgrammingFBGroup.github.io
+cgi=/data/data/com.termux/files/cgi-bin
 cpn=/data/data/com.termux/files/home/GitHub/CProgrammingNotes
 cr=/data/data/com.termux/files/home/GitHub/C
 dev_home=/storage/emulated/0
