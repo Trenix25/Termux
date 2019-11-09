@@ -1,12 +1,35 @@
 #!/data/data/com.termux/files/usr/bin/bash
 #
-# Restart the Apache2 web server.
+# This script restarts the Apache2 web server.
 #
-if [ -f /data/data/com.termux/files/adm/httpd.pid ]; then
+# First we need to see if the server is already running.
+#
+CURRENT=$(ps -e | grep httpd | cut -b 1-5 -z | cut -b 1-5)
+#
+if [ -z $CURRENT ]; then
+#
+# The server is not running so we need to start it.
+#
+     /data/data/com.termux/files/bin/start_web
+#
+     if [ $? != 0 ]; then
+          exit $?
+     else
+          exit 0
+     fi
+#
+else
+#
+# The server is running so we need to restart it.
+#
+# Call the server control script to restart the web server.
+#
      apachectl restart
+#
      if [ $? != 0 ]; then
           exit $?
      fi
+#
 fi
 #
 exit 0

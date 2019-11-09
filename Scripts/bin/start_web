@@ -1,12 +1,32 @@
 #!/data/data/com.termux/files/usr/bin/bash
 #
-# Start the Apache2 web server.
+# This script starts the Apache2 web server.
 #
-if [ -f /data/data/com.termux/files/adm/httpd.pid ]; then
+# First we need to see if the server is running.
+#
+CURRENT=$(ps -e | grep httpd | cut -b 1-5 -z | cut -b 1-5)
+#
+if [ -z $CURRENT ]; then
+#
+# The web server is not running.
+#
+# Remove the old pid file if it exists.
+#
+     if [ -f /data/data/com.termux/files/adm/httpd.pid ]; then
+          rm -f /data/data/com.termux/files/adm/httpd.pid
+     fi
+else
+#
+# The web server is already running so we have nothing to do.
+#
      exit 0
 fi
 #
+# Call the server control program to start the web server.
+#
 apachectl start
+#
+# Exit with an error code if something went wrong.
 #
 if [ $? != 0 ]; then
      exit $?

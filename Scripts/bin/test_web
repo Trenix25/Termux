@@ -1,0 +1,13 @@
+#!/data/data/com.termux/files/usr/bin/bash
+#
+CURRENT=$(ps -e | grep httpd | cut -b 1-5 -z | cut -b 1-5)
+#
+if [ -z $CURRENT ]; then
+     echo "The web server is not running."
+else
+     echo "The web server is running."
+fi
+#
+exit 0
+#
+# EOF

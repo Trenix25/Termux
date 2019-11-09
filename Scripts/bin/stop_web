@@ -1,16 +1,39 @@
 #!/data/data/com.termux/files/usr/bin/bash
 #
-# Stop the Apache2 web server.
+# This script stops the Apache2 web server.
 #
-# If it isn't done this way it shows an error message.
+# First we need to see if the server is running.
 #
-if [ -f /data/data/com.termux/files/adm/httpd.pid ]; then
-     WEBPID=`cat /data/data/com.termux/files/adm/httpd.pid` > /dev/null 2>&1
-     kill $WEBPID
+CURRENT=$(ps -e | grep httpd | cut -b 1-5 -z | cut -b 1-5)
+#
+if [ -z $CURRENT ]; then
+#
+# The server is not running so we need to remove the old pid file if it exists.
+#
      if [ -f /data/data/com.termux/files/adm/httpd.pid ]; then
           rm -f /data/data/com.termux/files/adm/httpd.pid
      fi
+#
+     exit 0
 fi
+#
+# If it isn't done this way it shows an error message.
+#
+kill $CURRENT
+#
+# Remove the old pid file if it exists.
+#
+if [ -f /data/data/com.termux/files/adm/httpd.pid ]; then
+     rm -f /data/data/com.termux/files/adm/httpd.pid
+fi
+#
+#if [ -f /data/data/com.termux/files/adm/httpd.pid ]; then
+#     WEBPID=`cat /data/data/com.termux/files/adm/httpd.pid` > /dev/null 2>&1
+#     kill $WEBPID
+#     if [ -f /data/data/com.termux/files/adm/httpd.pid ]; then
+#          rm -f /data/data/com.termux/files/adm/httpd.pid
+#     fi
+#fi
 #
 #     apachectl stop
 #
